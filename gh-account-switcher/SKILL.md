@@ -54,3 +54,14 @@ bash /Users/kemarx/workspace/km/claude-code-skills/gh-account-switcher/switch.sh
 |---|---|
 | `0` | Already on correct account, or switch succeeded |
 | `1` | No mapping found for directory, or switch failed |
+
+## ADO org context
+
+When switching GitHub accounts for `mai/*` repos, also be aware that:
+- The Azure DevOps MCP server is configured for the Microsoft org
+- ADO operations (PRs, work items, pipelines) in `mai/*` repos go through this org
+- No switching is needed for ADO — the MCP server handles it — but confirm connectivity by calling `mcp__plugin_azure-devops-mcp_azure-devops-mcp__core_list_projects` if ADO operations fail
+
+## Linear context
+
+Linear MCP is workspace-scoped (GroupMe team). Linear tickets can be created from any workspace directory — the `gh-account-switcher` does not affect Linear operations.

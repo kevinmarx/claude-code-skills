@@ -32,6 +32,26 @@ bash /Users/kemarx/workspace/km/claude-code-skills/token-rotator/check.sh --json
 bash /Users/kemarx/workspace/km/claude-code-skills/token-rotator/check.sh --json --quiet
 ```
 
+## MCP-based service checks
+
+In addition to the shell-based checks, use the following MCP tools to validate service connectivity:
+
+### Azure DevOps
+Call `mcp__plugin_azure-devops-mcp_azure-devops-mcp__core_list_projects` with no arguments.
+- If it returns projects, ADO auth is working.
+- If it errors, the ADO PAT or MCP config is broken.
+
+### Linear
+Call `mcp__plugin_linear-mcp_linear-server__list_teams` with no arguments.
+- If it returns teams, Linear auth is working.
+- If it errors, the Linear API key or MCP config is broken.
+
+### When running a full token audit:
+1. Run `check.sh` for env-var and CLI-based tokens
+2. Call the ADO MCP tool to verify ADO connectivity
+3. Call the Linear MCP tool to verify Linear connectivity
+4. Report all results together
+
 ## What It Checks
 
 | Service | Method | What's Validated |
@@ -43,6 +63,8 @@ bash /Users/kemarx/workspace/km/claude-code-skills/token-rotator/check.sh --json
 | Datadog API | Env var presence | `DD_API_KEY` is set |
 | Datadog App | Env var presence | `DD_APP_KEY` is set |
 | Braintrust | Env var presence | `BRAINTRUST_API_KEY` is set |
+| Azure DevOps MCP | MCP tool call | ADO connectivity via MCP |
+| Linear MCP | MCP tool call | Linear connectivity via MCP |
 
 ## Configuration
 

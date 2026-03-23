@@ -69,3 +69,30 @@ Print the path to an existing worktree matching the name (partial match supporte
 bash worktree.sh switch fix-auth
 # Prints: /Users/kemarx/workspace/mai/groupme-ios-fix-auth
 ```
+
+## Linear ticket integration
+
+When the user provides a Linear ticket ID (e.g., `GRO-123`) instead of a plain branch name:
+
+1. Fetch the ticket details using `mcp__plugin_linear-mcp_linear-server__get_issue` with the ticket ID
+2. Extract the ticket title and slugify it (lowercase, hyphens, max 50 chars)
+3. Use the result as the branch name: `users/kemarx/<ticket-id>-<slugified-title>`
+4. Example: ticket `GRO-456` titled "Fix push notification badge count" → branch `users/kemarx/gro-456-fix-push-notification-badge-count`
+
+### Usage with Linear tickets:
+```bash
+# Claude should detect the ticket ID pattern and fetch from Linear
+bash worktree.sh new GRO-123
+```
+
+When Claude detects a Linear ticket pattern (letters followed by a dash and numbers), it should:
+1. Call the Linear MCP to get the issue title
+2. Pass the slugified result to `worktree.sh new <slugified-name>`
+3. After creating the worktree, update the Linear ticket with a comment noting the branch name
+
+## ADO work item integration
+
+Similarly, when given an ADO work item ID (numeric, e.g., `12345`):
+1. Fetch via `mcp__plugin_azure-devops-mcp_azure-devops-mcp__wit_get_work_item`
+2. Slugify the title
+3. Create branch: `users/kemarx/<id>-<slugified-title>`

@@ -58,6 +58,10 @@ detect_default_branch() {
 }
 
 # --- Subcommand: new ---
+# Note: Claude may pre-process Linear ticket IDs (e.g., GRO-123) or ADO work item IDs
+# (e.g., 12345) into slugified names (e.g., gro-123-fix-push-notification-badge-count)
+# before calling this script. The name argument accepts any string valid for git branch
+# names — no pattern restrictions are enforced here.
 cmd_new() {
   local name=""
   local base=""

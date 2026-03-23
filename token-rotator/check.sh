@@ -301,6 +301,7 @@ while IFS= read -r line; do
     litellm_health)   check_litellm_health "$name" "$source" ;;
     datadog_validate) check_datadog_validate "$name" "$source" ;;
     http_check)       check_http_check "$name" "$source" ;;
+    ado_mcp_check|linear_mcp_check) add_result "$name" "unchecked" "Check via MCP" ;;
     *)                add_result "$name" "unchecked" "Unknown method: $method" ;;
   esac
 done < "$CONF_FILE"
