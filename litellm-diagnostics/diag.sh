@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # litellm-diagnostics — diagnose local LiteLLM proxy at localhost:4000
 
 set -euo pipefail
@@ -50,18 +50,18 @@ cmd_status() {
 
     # Health check with timing
     local start_ms end_ms elapsed_ms http_code body
-    start_ms=$(python3 -c 'import time; print(int(time.time()*1000))')
+    start_ms=$(date +%s)
 
     if body=$(curl -s -w '\n%{http_code}' --connect-timeout 5 --max-time 10 "${PROXY_URL}/health" 2>/dev/null); then
-        end_ms=$(python3 -c 'import time; print(int(time.time()*1000))')
+        end_ms=$(date +%s)
         elapsed_ms=$((end_ms - start_ms))
         http_code=$(echo "$body" | tail -1)
         body=$(echo "$body" | sed '$d')
 
         if [[ "$http_code" == "200" ]]; then
-            ok "Proxy is healthy (HTTP $http_code, ${elapsed_ms}ms)"
+            ok "Proxy is healthy (HTTP $http_code, ${elapsed_ms}s)"
         else
-            warn "Proxy responded with HTTP $http_code (${elapsed_ms}ms)"
+            warn "Proxy responded with HTTP $http_code (${elapsed_ms}s)"
         fi
 
         # Try to extract version
@@ -141,7 +141,7 @@ cmd_logs() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --lines)
-                lines="$2"
+                lines="${2:?Error: --lines requires a number}"
                 shift 2
                 ;;
             *)
@@ -211,7 +211,7 @@ cmd_test() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --model)
-                model="$2"
+                model="${2:?Error: --model requires a model name}"
                 shift 2
                 ;;
             *)
@@ -233,7 +233,7 @@ cmd_test() {
         }')
 
     local start_ms end_ms elapsed_ms response http_code
-    start_ms=$(python3 -c 'import time; print(int(time.time()*1000))')
+    start_ms=$(date +%s)
 
     if response=$(curl -s -w '\n%{http_code}' \
         --connect-timeout 5 \
@@ -243,13 +243,13 @@ cmd_test() {
         -d "$payload" \
         "${PROXY_URL}/v1/chat/completions" 2>/dev/null); then
 
-        end_ms=$(python3 -c 'import time; print(int(time.time()*1000))')
+        end_ms=$(date +%s)
         elapsed_ms=$((end_ms - start_ms))
         http_code=$(echo "$response" | tail -1)
         response=$(echo "$response" | sed '$d')
 
         if [[ "$http_code" == "200" ]]; then
-            ok "Completion succeeded (HTTP $http_code, ${elapsed_ms}ms)"
+            ok "Completion succeeded (HTTP $http_code, ${elapsed_ms}s)"
             echo ""
 
             local content
@@ -262,7 +262,7 @@ cmd_test() {
             total_tokens=$(echo "$response" | jq -r '.usage.total_tokens // "?"' 2>/dev/null)
             info "Tokens: ${prompt_tokens} prompt + ${completion_tokens} completion = ${total_tokens} total"
         else
-            fail "Completion failed (HTTP $http_code, ${elapsed_ms}ms)"
+            fail "Completion failed (HTTP $http_code, ${elapsed_ms}s)"
             echo ""
             echo "$response" | jq . 2>/dev/null || echo "$response"
             exit 1

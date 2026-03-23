@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # secret-scanner/scan.sh — Scan git content for leaked secrets
 set -euo pipefail
 
@@ -9,7 +9,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --staged) SCAN_MODE="staged"; shift ;;
     --all)    SCAN_MODE="all"; shift ;;
-    --path)   REPO_PATH="$2"; shift 2 ;;
+    --path)   REPO_PATH="${2:?Error: --path requires a directory}"; shift 2 ;;
     *)        echo "Unknown flag: $1" >&2; exit 2 ;;
   esac
 done
@@ -117,7 +117,9 @@ scan_line() {
   if [[ -n "$match" ]]; then
     echo "$file:$line_num  [$match]" >&2
     FOUND=1
+    return 1
   fi
+  return 0
 }
 
 while IFS= read -r file; do
@@ -148,7 +150,7 @@ while IFS= read -r file; do
     line_num=$((line_num + 1))
     # Skip empty lines
     [[ -z "$line" ]] && continue
-    scan_line "$file" "$line_num" "$line"
+    scan_line "$file" "$line_num" "$line" || FOUND=1
   done <<< "$content"
 done <<< "$FILES"
 

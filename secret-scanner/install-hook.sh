@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # secret-scanner/install-hook.sh — Install scan.sh as a git pre-commit hook
 set -euo pipefail
 
@@ -7,7 +7,7 @@ REPO_PATH="."
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --path) REPO_PATH="$2"; shift 2 ;;
+    --path) REPO_PATH="${2:?Error: --path requires a directory}"; shift 2 ;;
     *)      echo "Unknown flag: $1" >&2; exit 2 ;;
   esac
 done
@@ -36,9 +36,9 @@ $MARKER-end"
 if [[ -f "$HOOK_FILE" ]]; then
   # Check if already installed
   if grep -q "$MARKER" "$HOOK_FILE"; then
-    # Replace existing block
-    # Remove old block and re-add
-    sed -i '' "/$MARKER/,/$MARKER-end/d" "$HOOK_FILE"
+    # Remove old block and re-add (portable across macOS and Linux)
+    tmp=$(mktemp)
+    sed "/$MARKER/,/$MARKER-end/d" "$HOOK_FILE" > "$tmp" && mv "$tmp" "$HOOK_FILE"
   fi
   # Append to existing hook
   echo "" >> "$HOOK_FILE"

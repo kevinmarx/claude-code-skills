@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # gh-account-switcher: Auto-switch GitHub CLI accounts based on workspace directory.
 
 set -euo pipefail
@@ -15,7 +15,7 @@ QUIET=false
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --path)
-      TARGET_PATH="$2"
+      TARGET_PATH="${2:?Error: --path requires a directory}"
       shift 2
       ;;
     --check)
@@ -40,9 +40,12 @@ TARGET_PATH="$(cd "$TARGET_PATH" 2>/dev/null && pwd || echo "$TARGET_PATH")"
 find_expected_account() {
   local path="$1"
   while IFS='|' read -r pattern account; do
+    # Trim whitespace (pure bash, avoids xargs mangling)
+    pattern="${pattern#"${pattern%%[![:space:]]*}"}"
+    pattern="${pattern%"${pattern##*[![:space:]]}"}"
+    account="${account#"${account%%[![:space:]]*}"}"
+    account="${account%"${account##*[![:space:]]}"}"
     # Skip comments and blank lines
-    pattern="$(echo "$pattern" | xargs)"
-    account="$(echo "$account" | xargs)"
     [[ -z "$pattern" || "$pattern" == \#* ]] && continue
 
     if [[ "$path" == "$pattern"* ]]; then

@@ -68,12 +68,11 @@ detect_tickets() {
       [[ -n "$match" ]] && refs+=("{\"type\":\"linear\",\"id\":\"$match\"}")
     done < <(echo "$branch" | grep -oE '[A-Z]+-[0-9]+' || true)
 
-    # ADO: AB#12345 or plain #12345 in branch context
+    # ADO: AB#12345 (require AB# prefix to avoid false positives)
     while IFS= read -r match; do
       local num="${match#AB#}"
-      num="${num#\#}"
       [[ -n "$num" ]] && refs+=("{\"type\":\"ado\",\"id\":\"$num\"}")
-    done < <(echo "$branch" | grep -oE '(AB#|#)[0-9]+' || true)
+    done < <(echo "$branch" | grep -oE 'AB#[0-9]+' || true)
   fi
 
   # Parse last 5 commit messages
@@ -88,9 +87,8 @@ detect_tickets() {
 
       while IFS= read -r match; do
         local num="${match#AB#}"
-        num="${num#\#}"
         [[ -n "$num" ]] && refs+=("{\"type\":\"ado\",\"id\":\"$num\"}")
-      done < <(echo "$commits" | grep -oE '(AB#|#)[0-9]+' || true)
+      done < <(echo "$commits" | grep -oE 'AB#[0-9]+' || true)
     fi
   fi
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Set the tmux pane title to describe current work
 # Usage: bash set-title.sh "short task description"
 

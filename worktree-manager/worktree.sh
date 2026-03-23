@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 # worktree-manager: git worktree management with users/kemarx/* branch conventions
@@ -127,25 +127,7 @@ cmd_list() {
   printf "%-50s %-40s %s\n" "PATH" "BRANCH" "STATUS"
   printf "%-50s %-40s %s\n" "----" "------" "------"
 
-  git worktree list --porcelain | awk '
-    /^worktree / { path = substr($0, 10) }
-    /^branch /   { branch = substr($0, 8) }
-    /^HEAD /     { head = substr($0, 6) }
-    /^bare$/     { branch = "(bare)" }
-    /^detached$/ { branch = "(detached)" }
-    /^$/ {
-      if (path != "") {
-        # We print and let the shell check dirty status
-        print path "\t" branch
-      }
-      path = ""; branch = ""; head = ""
-    }
-    END {
-      if (path != "") {
-        print path "\t" branch
-      }
-    }
-  ' | while IFS=$'\t' read -r wt_path wt_branch; do
+  while IFS=$'\t' read -r wt_path wt_branch; do
     local status="clean"
     if [[ -d "$wt_path" ]]; then
       if git -C "$wt_path" diff --quiet 2>/dev/null && git -C "$wt_path" diff --cached --quiet 2>/dev/null; then
@@ -163,7 +145,26 @@ cmd_list() {
     # Shorten branch for display
     local short_branch="${wt_branch#refs/heads/}"
     printf "%-50s %-40s %s\n" "$wt_path" "$short_branch" "$status"
-  done
+  done < <(
+    git worktree list --porcelain | awk '
+      /^worktree / { path = substr($0, 10) }
+      /^branch /   { branch = substr($0, 8) }
+      /^HEAD /     { head = substr($0, 6) }
+      /^bare$/     { branch = "(bare)" }
+      /^detached$/ { branch = "(detached)" }
+      /^$/ {
+        if (path != "") {
+          print path "\t" branch
+        }
+        path = ""; branch = ""; head = ""
+      }
+      END {
+        if (path != "") {
+          print path "\t" branch
+        }
+      }
+    '
+  )
 }
 
 # --- Subcommand: clean ---

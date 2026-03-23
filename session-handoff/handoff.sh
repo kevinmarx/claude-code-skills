@@ -161,7 +161,7 @@ cmd_load() {
 
   # Find the most recent handoff file for this repo
   local latest
-  latest=$(ls -t "$HANDOFF_DIR/${name}"-*.json 2>/dev/null | head -1 || true)
+  latest=$(find "$HANDOFF_DIR" -maxdepth 1 -name "${name}-*.json" -print0 2>/dev/null | xargs -0 ls -t 2>/dev/null | head -1 || true)
 
   if [[ -z "$latest" ]]; then
     echo "No handoff found for $name"
@@ -233,7 +233,7 @@ cmd_list() {
   ensure_dir
 
   local files
-  files=$(ls -t "$HANDOFF_DIR"/*.json 2>/dev/null | head -"$limit" || true)
+  files=$(find "$HANDOFF_DIR" -maxdepth 1 -name "*.json" -print0 2>/dev/null | xargs -0 ls -t 2>/dev/null | head -"$limit" || true)
 
   if [[ -z "$files" ]]; then
     echo "No handoffs found."
