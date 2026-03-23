@@ -19,7 +19,7 @@ Diagnose and troubleshoot the local LiteLLM proxy running at `http://localhost:4
 ## Usage
 
 ```bash
-bash /Users/kemarx/workspace/km/claude-code-skills/litellm-diagnostics/diag.sh <subcommand> [options]
+bash ~/.claude/skills/litellm-diagnostics/diag.sh <subcommand> [options]
 ```
 
 ## Subcommands

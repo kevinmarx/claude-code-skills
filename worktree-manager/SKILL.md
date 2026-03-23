@@ -18,7 +18,7 @@ Manage git worktrees using the `users/kemarx/*` branch naming convention.
 ## Usage
 
 ```bash
-bash /Users/kemarx/workspace/km/claude-code-skills/worktree-manager/worktree.sh <subcommand> [args]
+bash ~/.claude/skills/worktree-manager/worktree.sh <subcommand> [args]
 ```
 
 Must be run from within a git repository.

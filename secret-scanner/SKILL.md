@@ -19,25 +19,25 @@ Scans git staged content (or all tracked files) for leaked secrets before they g
 ### Scan staged changes (default)
 
 ```bash
-bash /Users/kemarx/workspace/km/claude-code-skills/secret-scanner/scan.sh
+bash ~/.claude/skills/secret-scanner/scan.sh
 ```
 
 ### Scan staged changes in a specific repo
 
 ```bash
-bash /Users/kemarx/workspace/km/claude-code-skills/secret-scanner/scan.sh --path /path/to/repo
+bash ~/.claude/skills/secret-scanner/scan.sh --path /path/to/repo
 ```
 
 ### Scan all tracked files
 
 ```bash
-bash /Users/kemarx/workspace/km/claude-code-skills/secret-scanner/scan.sh --all
+bash ~/.claude/skills/secret-scanner/scan.sh --all
 ```
 
 ### Install as a git pre-commit hook
 
 ```bash
-bash /Users/kemarx/workspace/km/claude-code-skills/secret-scanner/install-hook.sh --path /path/to/repo
+bash ~/.claude/skills/secret-scanner/install-hook.sh --path /path/to/repo
 ```
 
 ## Patterns Detected

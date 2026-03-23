@@ -28,16 +28,16 @@ Mappings are configured in `accounts.conf`.
 
 ```bash
 # Auto-switch based on current directory
-bash /Users/kemarx/workspace/km/claude-code-skills/gh-account-switcher/switch.sh
+bash ~/.claude/skills/gh-account-switcher/switch.sh
 
 # Switch for a specific path
-bash /Users/kemarx/workspace/km/claude-code-skills/gh-account-switcher/switch.sh --path /Users/kemarx/workspace/mai/some-repo
+bash ~/.claude/skills/gh-account-switcher/switch.sh --path /Users/kemarx/workspace/mai/some-repo
 
 # Check which account should be active (no switching)
-bash /Users/kemarx/workspace/km/claude-code-skills/gh-account-switcher/switch.sh --check
+bash ~/.claude/skills/gh-account-switcher/switch.sh --check
 
 # Quiet mode (single line, no decoration)
-bash /Users/kemarx/workspace/km/claude-code-skills/gh-account-switcher/switch.sh --quiet
+bash ~/.claude/skills/gh-account-switcher/switch.sh --quiet
 ```
 
 ## Flags

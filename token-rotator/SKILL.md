@@ -20,16 +20,16 @@ Checks token expiry and health across multiple services. Reports which tokens ne
 
 ```bash
 # Full health check (table output)
-bash /Users/kemarx/workspace/km/claude-code-skills/token-rotator/check.sh
+bash ~/.claude/skills/token-rotator/check.sh
 
 # Only show problems
-bash /Users/kemarx/workspace/km/claude-code-skills/token-rotator/check.sh --quiet
+bash ~/.claude/skills/token-rotator/check.sh --quiet
 
 # Machine-readable JSON output
-bash /Users/kemarx/workspace/km/claude-code-skills/token-rotator/check.sh --json
+bash ~/.claude/skills/token-rotator/check.sh --json
 
 # Combine flags
-bash /Users/kemarx/workspace/km/claude-code-skills/token-rotator/check.sh --json --quiet
+bash ~/.claude/skills/token-rotator/check.sh --json --quiet
 ```
 
 ## MCP-based service checks
