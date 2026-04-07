@@ -13,7 +13,7 @@ This skill tells Claude to proactively call a script at the start of every task 
 Your tabs go from:
 
 ```
-1:agent-evals  2:agent-evals  3:agent-evals
+1:repo  2:bash  3:repo
 ```
 
 To:
