@@ -20,6 +20,9 @@ A collection of [Claude Code skills](https://docs.anthropic.com/en/docs/claude-c
 - `README.md` is for humans (problem, solution, install steps, how it works)
 - Skills should be minimal — one script, one purpose
 - Scripts should output minimal text (Claude parses the output)
+- Prompt-driven skills may include one standard-library validator/renderer when
+  deterministic output contracts cannot be enforced reliably in prose alone;
+  keep semantic extraction in the skill and cover the validator with fixtures.
 - The top-level `README.md` should list all available skills
 
 ## Adding a new skill

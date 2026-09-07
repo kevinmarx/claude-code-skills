@@ -4,6 +4,13 @@ A collection of [Claude Code skills](https://docs.anthropic.com/en/docs/claude-c
 
 ## Skills
 
+### km-review-check
+
+Triage GitHub PR feedback across review summaries, top-level comments, inline
+threads, and resolution state. Separates implementation work from human
+approvals, per-artifact response coverage, reviewer acceptance, and review
+coverage gaps.
+
 ### mystatus
 
 Morning dashboard showing Linear tickets and GitHub PRs scoped by organization. Run `/mystatus mai` or `/mystatus gm` to see what needs attention without visiting multiple UIs.
