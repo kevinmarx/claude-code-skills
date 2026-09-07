@@ -1,0 +1,268 @@
+{
+  "schema": "km-review-check/v2",
+  "pr": {
+    "number": 12131,
+    "title": "docs(browser): define permission and approval model",
+    "branch": "users/kemarx/browser-permissions-design",
+    "head_sha": "7b12b0fb65b42b291e187422494ca2222d33f7aa",
+    "thread_resolution_state": "available"
+  },
+  "findings": [
+    {
+      "id": "redis-cluster-claim-cas",
+      "summary": "Make Redis Cluster claim CAS executable",
+      "severity": "high",
+      "implementation": {
+        "state": "addressed",
+        "evidence": [
+          "docs/design/2026-09-03-browser-action-permissions-design.md:852-884",
+          "docs/design/2026-09-03-browser-action-permissions-design.md:1429"
+        ]
+      },
+      "sources": [
+        {
+          "kind": "review",
+          "id": "185337886",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#pullrequestreview-185337886",
+          "author": "dspektor",
+          "reviewed_sha": "e6f165bbd52bda5128f668c48c29d37e2b3cf6ea",
+          "response": "unanswered",
+          "acceptance": "pending",
+          "thread_resolution": "not_applicable"
+        },
+        {
+          "kind": "review",
+          "id": "185359086",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#pullrequestreview-185359086",
+          "author": "edpiva",
+          "reviewed_sha": "e6f165bbd52bda5128f668c48c29d37e2b3cf6ea",
+          "response": "unanswered",
+          "acceptance": "pending",
+          "thread_resolution": "not_applicable"
+        },
+        {
+          "kind": "comment",
+          "id": "236906881",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#issuecomment-236906881",
+          "author": "dspektor",
+          "reviewed_sha": "e6f165bbd52bda5128f668c48c29d37e2b3cf6ea",
+          "response": "unanswered",
+          "acceptance": "pending",
+          "thread_resolution": "not_applicable"
+        }
+      ]
+    },
+    {
+      "id": "final-origin-withholding",
+      "summary": "Withhold content after an unapproved final-origin change",
+      "severity": "high",
+      "implementation": {
+        "state": "addressed",
+        "evidence": [
+          "docs/design/2026-09-03-browser-action-permissions-design.md:531-553",
+          "docs/design/2026-09-03-browser-action-permissions-design.md:1469-1471"
+        ]
+      },
+      "sources": [
+        {
+          "kind": "review",
+          "id": "185337886",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#pullrequestreview-185337886",
+          "author": "dspektor",
+          "reviewed_sha": "e6f165bbd52bda5128f668c48c29d37e2b3cf6ea",
+          "response": "unanswered",
+          "acceptance": "pending",
+          "thread_resolution": "not_applicable"
+        },
+        {
+          "kind": "review",
+          "id": "185359086",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#pullrequestreview-185359086",
+          "author": "edpiva",
+          "reviewed_sha": "e6f165bbd52bda5128f668c48c29d37e2b3cf6ea",
+          "response": "unanswered",
+          "acceptance": "pending",
+          "thread_resolution": "not_applicable"
+        },
+        {
+          "kind": "comment",
+          "id": "236906881",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#issuecomment-236906881",
+          "author": "dspektor",
+          "reviewed_sha": "e6f165bbd52bda5128f668c48c29d37e2b3cf6ea",
+          "response": "unanswered",
+          "acceptance": "pending",
+          "thread_resolution": "not_applicable"
+        }
+      ]
+    },
+    {
+      "id": "user-revocation-fence",
+      "summary": "Move fence ownership to the user revocation scope",
+      "severity": "high",
+      "implementation": {
+        "state": "addressed",
+        "evidence": [
+          "docs/design/2026-09-03-browser-action-permissions-design.md:852-910"
+        ]
+      },
+      "sources": [
+        {
+          "kind": "review",
+          "id": "185446336",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#pullrequestreview-185446336",
+          "author": "dspektor",
+          "reviewed_sha": "d6d93cd9f7fec29061b904448b0509ed47d8209b",
+          "response": "author_dispositioned",
+          "acceptance": "pending",
+          "thread_resolution": "not_applicable"
+        }
+      ]
+    },
+    {
+      "id": "browser-settings-taxonomy",
+      "summary": "Reconcile browser settings with the shared taxonomy",
+      "severity": "medium",
+      "implementation": {
+        "state": "addressed",
+        "evidence": [
+          "docs/design/2026-09-03-browser-action-permissions-design.md:303-352"
+        ]
+      },
+      "sources": [
+        {
+          "kind": "comment",
+          "id": "237154201",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#issuecomment-237154201",
+          "author": "carmen-pfeil",
+          "reviewed_sha": "d6d93cd9f7fec29061b904448b0509ed47d8209b",
+          "response": "author_dispositioned",
+          "acceptance": "pending",
+          "thread_resolution": "not_applicable"
+        }
+      ]
+    },
+    {
+      "id": "current-behavior-forward-pointer",
+      "summary": "Add a forward pointer from the current-behavior reference",
+      "severity": "low",
+      "implementation": {
+        "state": "addressed",
+        "evidence": [
+          "docs/reference/local-browser-mode.md:10-13"
+        ]
+      },
+      "sources": [
+        {
+          "kind": "comment",
+          "id": "237154201",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#issuecomment-237154201",
+          "author": "carmen-pfeil",
+          "reviewed_sha": "d6d93cd9f7fec29061b904448b0509ed47d8209b",
+          "response": "author_dispositioned",
+          "acceptance": "pending",
+          "thread_resolution": "not_applicable"
+        }
+      ]
+    }
+  ],
+  "required_human_actions": [
+    {
+      "id": "ha-design",
+      "summary": "Obtain HA-DESIGN sign-off",
+      "state": "pending",
+      "owner": "architecture approver",
+      "sources": [
+        {
+          "kind": "review",
+          "id": "184508386",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#pullrequestreview-184508386"
+        }
+      ]
+    },
+    {
+      "id": "ha-security",
+      "summary": "Obtain HA-SECURITY sign-off",
+      "state": "pending",
+      "owner": "security approver",
+      "sources": [
+        {
+          "kind": "review",
+          "id": "184508386",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#pullrequestreview-184508386"
+        },
+        {
+          "kind": "comment",
+          "id": "236246381",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#issuecomment-236246381"
+        }
+      ]
+    }
+  ],
+  "review_workflow": [
+    {
+      "reviewer": "edpiva",
+      "state": "awaiting_rereview",
+      "verdict": "CHANGES_REQUESTED",
+      "reviewed_sha": "e6f165bbd52bda5128f668c48c29d37e2b3cf6ea",
+      "head_state": "stale",
+      "sources": [
+        {
+          "kind": "review",
+          "id": "185359086",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#pullrequestreview-185359086"
+        }
+      ]
+    },
+    {
+      "reviewer": "dspektor",
+      "state": "awaiting_rereview",
+      "verdict": "CHANGES_REQUESTED",
+      "reviewed_sha": "d6d93cd9f7fec29061b904448b0509ed47d8209b",
+      "head_state": "stale",
+      "sources": [
+        {
+          "kind": "review",
+          "id": "185337886",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#pullrequestreview-185337886"
+        },
+        {
+          "kind": "comment",
+          "id": "236906881",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#issuecomment-236906881"
+        },
+        {
+          "kind": "review",
+          "id": "185446336",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#pullrequestreview-185446336"
+        }
+      ]
+    },
+    {
+      "reviewer": "carmen-pfeil",
+      "state": "awaiting_acknowledgement",
+      "verdict": "COMMENTED",
+      "reviewed_sha": "d6d93cd9f7fec29061b904448b0509ed47d8209b",
+      "head_state": "stale",
+      "sources": [
+        {
+          "kind": "comment",
+          "id": "237154201",
+          "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#issuecomment-237154201"
+        }
+      ]
+    }
+  ],
+  "coverage_gaps": [
+    {
+      "id": "copilot-review-setup",
+      "summary": "Copilot review setup failed before analysis",
+      "state": "open",
+      "source": {
+        "kind": "comment",
+        "id": "236243626",
+        "url": "https://microsoft.ghe.com/bic/lobster/pull/12131#issuecomment-236243626"
+      }
+    }
+  ]
+}

@@ -7,8 +7,9 @@ A collection of [Claude Code skills](https://docs.anthropic.com/en/docs/claude-c
 ### km-review-check
 
 Triage GitHub PR feedback across review summaries, top-level comments, inline
-threads, and resolution state. Reports only actionable findings that remain
-open, contested, or unverifiable.
+threads, and resolution state. Separates implementation work from human
+approvals, per-artifact response coverage, reviewer acceptance, and review
+coverage gaps.
 
 ### mystatus
 
